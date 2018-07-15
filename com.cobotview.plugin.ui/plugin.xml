@@ -4,8 +4,8 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="com.cobotview.plugin.ui.CobotViewPerspectiveFactory"
-            icon="icons/prj_obj.png"
+            class="com.cobotview.plugin.ui.perspective.CobotViewPerspectiveFactory"
+            icon="icons/menus/prj_obj.png"
             id="com.cobotview.ui.perspective"
             name="cobotview">
          <description>
@@ -16,9 +16,9 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+            locationURI="menu:org.eclipse.ui.main.menu">
          <menu
-               icon="icons/config-category.gif"
+               icon="icons/menus/config-category.gif"
                id="CobotFile"
                label="CobotFile">
             <command
@@ -36,7 +36,7 @@
             </visibleWhen>
          </menu>
          <menu
-               icon="icons/action-buildconfig.gif"
+               icon="icons/menus/action-buildconfig.gif"
                id="CobotEdit"
                label="CobotEdit">
             <visibleWhen
@@ -54,7 +54,7 @@
             </command>
          </menu>
          <menu
-               icon="icons/config-category.gif"
+               icon="icons/menus/config-category.gif"
                id="CobotGraph"
                label="CobotGraph">
             <visibleWhen
@@ -72,7 +72,7 @@
             </command>
          </menu>
          <menu
-               icon="icons/action-buildconfig.gif"
+               icon="icons/menus/action-buildconfig.gif"
                id="CobotSearch"
                label="CobotSearch">
             <command
@@ -90,7 +90,7 @@
             </visibleWhen>
          </menu>
          <menu
-               icon="icons/config-category.gif"
+               icon="icons/menus/config-category.gif"
                id="CobotWindow"
                label="CobotWindow">
             <command
@@ -108,7 +108,7 @@
             </visibleWhen>
          </menu>
          <menu
-               icon="icons/config-category.gif"
+               icon="icons/menus/config-category.gif"
                id="CobotHelp"
                label="CobotHelp">
             <command
@@ -126,5 +126,184 @@
             </visibleWhen>
          </menu>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="com.cobotview.plugin.ui.toolbar1">
+            <command
+                  commandId="com.cobotview.newProject"
+                  icon="icons/toolbar/addpath_wiz.gif"
+                  style="push">
+            </command>
+         </toolbar>
+         <toolbar
+               id="com.cobotview.plugin.ui.toolbar2">
+            <command
+                  commandId="com.cobotview.openFile"
+                  icon="icons/toolbar/refactor_field_wiz.png"
+                  style="push">
+            </command>
+         </toolbar>
+         <toolbar
+               id="com.cobotview.plugin.ui.toolbar3">
+            <command
+                  commandId="com.cobotview.displayFunctionGraph"
+                  icon="icons/toolbar/refactor_method_wiz.png"
+                  style="push">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+           targetID="com.cobotview.ui.perspective">
+         <view
+               closeable="true"
+               id="com.cobotview.plugin.ui.projectview"
+               minimized="false"
+               moveable="true"
+               ratio="0.25"
+               relationship="left"
+               relative="org.eclipse.ui.editorss"
+               showTitle="true"
+               visible="true">
+         </view>
+         <view
+               closeable="true"
+               id="com.cobotview.plugin.ui.functionview"
+               minimized="false"
+               moveable="true"
+               ratio="0.5"
+               relationship="bottom"
+               relative="com.cobotview.plugin.ui.projectview"
+               showTitle="true"
+               visible="true">
+         </view>
+         <view
+               closeable="true"
+               id="com.cobotview.plugin.ui.contentview"
+               minimized="false"
+               moveable="true"
+               ratio="0.5"
+               relationship="bottom"
+               relative="com.cobotview.plugin.ui.functionview"
+               showTitle="true"
+               visible="true">
+         </view>
+         <view
+               closeable="true"
+               id="com.cobotview.plugin.ui.graphview"
+               minimized="false"
+               moveable="true"
+               ratio="0.75"
+               relationship="bottom"
+               relative="org.eclipse.ui.editorss"
+               showTitle="true"
+               visible="true">
+         </view>
+         <hiddenMenuItem
+               id="org.eclipse.ui.run">
+         </hiddenMenuItem>
+         <hiddenMenuItem
+               id="file">
+         </hiddenMenuItem>
+          <hiddenMenuItem
+               id="help">
+         </hiddenMenuItem>
+         <hiddenMenuItem
+               id="org.eclipse.search.ui.openSearchDialog">
+         </hiddenMenuItem>
+         <hiddenMenuItem
+               id="org.eclipse.search.ui.openFileSearchPage">
+         </hiddenMenuItem>
+         <hiddenMenuItem
+               id="org.eclipse.search.ui.performTextSearchWorkingSet">
+         </hiddenMenuItem>
+         <hiddenMenuItem
+               id="org.eclipse.search.ui.performTextSearchWorkspace">
+         </hiddenMenuItem>
+         <hiddenMenuItem
+               id="org.eclipse.search.ui.performTextSearchProject">
+         </hiddenMenuItem>
+         <hiddenMenuItem
+               id="org.eclipse.search.ui.performTextSearchFile">
+         </hiddenMenuItem>
+         <hiddenMenuItem
+               id="org.eclipse.wst.xml.ui.designMenuId">
+         </hiddenMenuItem>
+         <hiddenMenuItem
+               id="org.eclipse.ui.run">
+         </hiddenMenuItem>
+         <hiddenMenuItem
+               id="project">
+         </hiddenMenuItem>
+         <hiddenMenuItem
+               id="navigate">
+         </hiddenMenuItem>
+         <hiddenMenuItem
+               id="refactorMenuId">
+         </hiddenMenuItem>
+         <hiddenMenuItem
+               id="sourceMenuId">
+         </hiddenMenuItem>
+         <hiddenMenuItem
+               id="edit">
+         </hiddenMenuItem>
+         
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="com.cobotview.plugin.ui.commands.NewProjectToolBarHandler"
+            id="com.cobotview.newProject"
+            name="newProject">
+         <defaultHandler
+               class="com.cobotview.plugin.ui.perspective.NewProjectToolBarHandler">
+         </defaultHandler>
+      </command>
+      <command
+            id="com.cobotview.displayFunctionGraph"
+            name="displayFunctionGraph">
+         <defaultHandler
+               class="com.cobotview.plugin.ui.perspective.DisplayFunctionGraphHandler">
+         </defaultHandler>
+      </command>
+      <command
+            id="com.cobotview.openFile"
+            name="openFile">
+         <defaultHandler
+               class="com.cobotview.plugin.ui.commands.OpenFileHandler">
+         </defaultHandler>
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.eclipse.ui.navigator.resources.ProjectExplorer"
+            id="com.cobotview.plugin.ui.projectview"
+            name="ProjectExplorer"
+            restorable="true">
+      </view>
+      <view
+            class="com.cobotview.plugin.ui.views.FunctionView"
+            id="com.cobotview.plugin.ui.functionview"
+            name="FunctionView"
+            restorable="true">
+      </view>
+      <view
+            class="com.cobotview.plugin.ui.views.ContentView"
+            id="com.cobotview.plugin.ui.contentview"
+            name="ContentView"
+            restorable="true">
+      </view>
+      <view
+            class="com.cobotview.plugin.ui.views.GraphView"
+            id="com.cobotview.plugin.ui.graphview"
+            name="GraphView"
+            restorable="true">
+      </view>
    </extension>
 </plugin>

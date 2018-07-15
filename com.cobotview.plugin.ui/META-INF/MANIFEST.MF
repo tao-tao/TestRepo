@@ -7,4 +7,9 @@ Bundle-Vendor: COBOTVIEW
 Automatic-Module-Name: com.cobotview.plugin.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.ui,
- org.eclipse.equinox.app
+ org.eclipse.equinox.app,
+ org.eclipse.ui.workbench,
+ org.eclipse.core.runtime;bundle-version="3.13.0",
+ org.eclipse.ui.navigator;bundle-version="3.7.0",
+ org.eclipse.ui.navigator.resources;bundle-version="3.6.1",
+ org.eclipse.e4.ui.workbench;bundle-version="1.5.1"
