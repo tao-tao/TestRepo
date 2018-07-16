@@ -188,7 +188,7 @@
            targetID="com.cobotview.ui.perspective">
          <view
                closeable="true"
-               id="com.cobotview.plugin.ui.projectview"
+               id="com.cobotview.plugin.ui.projectView"
                minimized="false"
                moveable="true"
                ratio="0.25"
@@ -199,29 +199,29 @@
          </view>
          <view
                closeable="true"
-               id="com.cobotview.plugin.ui.functionview"
+               id="com.cobotview.plugin.ui.functionView"
                minimized="false"
                moveable="true"
                ratio="0.5"
                relationship="bottom"
-               relative="com.cobotview.plugin.ui.projectview"
+               relative="com.cobotview.plugin.ui.projectView"
                showTitle="true"
                visible="true">
          </view>
          <view
                closeable="true"
-               id="com.cobotview.plugin.ui.contentview"
+               id="com.cobotview.plugin.ui.contentView"
                minimized="false"
                moveable="true"
                ratio="0.5"
                relationship="bottom"
-               relative="com.cobotview.plugin.ui.functionview"
+               relative="com.cobotview.plugin.ui.functionView"
                showTitle="true"
                visible="true">
          </view>
          <view
                closeable="true"
-               id="com.cobotview.plugin.ui.graphview"
+               id="com.cobotview.plugin.ui.graphView"
                minimized="false"
                moveable="true"
                ratio="0.75"
@@ -291,25 +291,25 @@
          point="org.eclipse.ui.views">
       <view
             class="org.eclipse.ui.navigator.resources.ProjectExplorer"
-            id="com.cobotview.plugin.ui.projectview"
+            id="com.cobotview.plugin.ui.projectView"
             name="ProjectExplorer"
             restorable="true">
       </view>
       <view
             class="com.cobotview.plugin.ui.views.FunctionView"
-            id="com.cobotview.plugin.ui.functionview"
+            id="com.cobotview.plugin.ui.functionView"
             name="FunctionView"
             restorable="true">
       </view>
       <view
             class="com.cobotview.plugin.ui.views.ContentView"
-            id="com.cobotview.plugin.ui.contentview"
+            id="com.cobotview.plugin.ui.contentView"
             name="ContentView"
             restorable="true">
       </view>
       <view
             class="com.cobotview.plugin.ui.views.GraphView"
-            id="com.cobotview.plugin.ui.graphview"
+            id="com.cobotview.plugin.ui.graphView"
             name="GraphView"
             restorable="true">
       </view>
@@ -354,6 +354,27 @@
          <hiddenToolBarItem
                id="org.eclipse.ui.navigate.previous">
          </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="org.eclipse.ui.help.quickStartAction">
+         </hiddenToolBarItem>
       </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="com.cobotview.plugin.ui.wizards.category.cobotView"
+            name="CobotView">
+      </category>
+      <wizard
+            canFinishEarly="false"
+            category="com.cobotview.plugin.ui.wizards.category.cobotView"
+            class="com.cobotview.plugin.ui.wizards.CobotViewNewWizard"
+            finalPerspective="com.cobotview.ui.perspective"
+            hasPages="true"
+            icon="icons/wizard/project.gif"
+            id="com.cobotview.plugin.ui.CobotViewNewWizard"
+            name="CobotView Project"
+            project="true">
+      </wizard>
    </extension>
 </plugin>

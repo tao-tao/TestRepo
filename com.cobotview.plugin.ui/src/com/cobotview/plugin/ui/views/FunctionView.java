@@ -15,5 +15,4 @@ public class FunctionView extends ViewPart {
 	@Override
 	public void setFocus() {
 	}
-
 }
