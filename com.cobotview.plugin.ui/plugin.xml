@@ -7,7 +7,7 @@
             class="com.cobotview.plugin.ui.perspective.CobotViewPerspectiveFactory"
             icon="icons/menus/prj_obj.png"
             id="com.cobotview.ui.perspective"
-            name="cobotview">
+            name="CobotView">
          <description>
             Cobot View
          </description>
@@ -39,6 +39,10 @@
                icon="icons/menus/action-buildconfig.gif"
                id="CobotEdit"
                label="CobotEdit">
+            <command
+                  commandId="org.eclipse.ui.edit.rename"
+                  style="push">
+            </command>
             <visibleWhen
                   checkEnabled="false">
                <with
@@ -48,15 +52,15 @@
                   </equals>
                </with>
             </visibleWhen>
-            <command
-                  commandId="org.eclipse.ui.edit.rename"
-                  style="push">
-            </command>
          </menu>
          <menu
                icon="icons/menus/config-category.gif"
                id="CobotGraph"
                label="CobotGraph">
+            <command
+                  commandId="org.eclipse.ui.views.showView"
+                  style="push">
+            </command>
             <visibleWhen
                   checkEnabled="false">
                <with
@@ -66,10 +70,6 @@
                   </equals>
                </with>
             </visibleWhen>
-            <command
-                  commandId="org.eclipse.ui.views.showView"
-                  style="push">
-            </command>
          </menu>
          <menu
                icon="icons/menus/action-buildconfig.gif"
@@ -135,6 +135,15 @@
                   commandId="com.cobotview.newProject"
                   icon="icons/toolbar/addpath_wiz.gif"
                   style="push">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="activeWorkbenchWindow.activePerspective">
+                     <equals
+                           value="com.cobotview.ui.perspective">
+                     </equals>
+                  </with>
+               </visibleWhen>
             </command>
          </toolbar>
          <toolbar
@@ -143,6 +152,15 @@
                   commandId="com.cobotview.openFile"
                   icon="icons/toolbar/refactor_field_wiz.png"
                   style="push">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="activeWorkbenchWindow.activePerspective">
+                     <equals
+                           value="com.cobotview.ui.perspective">
+                     </equals>
+                  </with>
+               </visibleWhen>
             </command>
          </toolbar>
          <toolbar
@@ -151,6 +169,15 @@
                   commandId="com.cobotview.displayFunctionGraph"
                   icon="icons/toolbar/refactor_method_wiz.png"
                   style="push">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="activeWorkbenchWindow.activePerspective">
+                     <equals
+                           value="com.cobotview.ui.perspective">
+                     </equals>
+                  </with>
+               </visibleWhen>
             </command>
          </toolbar>
       </menuContribution>
@@ -213,28 +240,7 @@
                id="help">
          </hiddenMenuItem>
          <hiddenMenuItem
-               id="org.eclipse.search.ui.openSearchDialog">
-         </hiddenMenuItem>
-         <hiddenMenuItem
-               id="org.eclipse.search.ui.openFileSearchPage">
-         </hiddenMenuItem>
-         <hiddenMenuItem
-               id="org.eclipse.search.ui.performTextSearchWorkingSet">
-         </hiddenMenuItem>
-         <hiddenMenuItem
-               id="org.eclipse.search.ui.performTextSearchWorkspace">
-         </hiddenMenuItem>
-         <hiddenMenuItem
-               id="org.eclipse.search.ui.performTextSearchProject">
-         </hiddenMenuItem>
-         <hiddenMenuItem
-               id="org.eclipse.search.ui.performTextSearchFile">
-         </hiddenMenuItem>
-         <hiddenMenuItem
-               id="org.eclipse.wst.xml.ui.designMenuId">
-         </hiddenMenuItem>
-         <hiddenMenuItem
-               id="org.eclipse.ui.run">
+               id="org.eclipse.search.menu">
          </hiddenMenuItem>
          <hiddenMenuItem
                id="project">
@@ -251,7 +257,9 @@
          <hiddenMenuItem
                id="edit">
          </hiddenMenuItem>
-         
+         <hiddenMenuItem
+               id="window">
+         </hiddenMenuItem>
       </perspectiveExtension>
    </extension>
    <extension
@@ -305,5 +313,47 @@
             name="GraphView"
             restorable="true">
       </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="com.cobotview.ui.perspective">
+         <hiddenToolBarItem
+               id="org.eclipse.search.OpenSearchDialogPage">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="newWizardDropDown">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="org.eclipse.ui.externaltools.ExternalToolMenuDelegateToolbar">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="org.eclipse.mylyn.tasks.ui.command.openTask">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="org.eclipse.mylyn.tasks.ui.navigation">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="org.eclipse.ui.file.saveAll">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="org.eclipse.ui.file.save">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="org.eclipse.ui.edit.text.gotoLastEditPosition">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="org.eclipse.ui.edit.text.actionSet.navigation">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="SearchField">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="org.eclipse.ui.navigate.next">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="org.eclipse.ui.navigate.previous">
+         </hiddenToolBarItem>
+      </perspectiveExtension>
    </extension>
 </plugin>
