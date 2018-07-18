@@ -18,9 +18,8 @@
       <menuContribution
             locationURI="menu:org.eclipse.ui.main.menu">
          <menu
-               icon="icons/menus/config-category.gif"
                id="CobotFile"
-               label="CobotFile">
+               label="File">
             <command
                   commandId="org.eclipse.ui.project.openProject"
                   style="push">
@@ -36,9 +35,8 @@
             </visibleWhen>
          </menu>
          <menu
-               icon="icons/menus/action-buildconfig.gif"
                id="CobotEdit"
-               label="CobotEdit">
+               label="Edit">
             <command
                   commandId="org.eclipse.ui.edit.rename"
                   style="push">
@@ -54,9 +52,8 @@
             </visibleWhen>
          </menu>
          <menu
-               icon="icons/menus/config-category.gif"
                id="CobotGraph"
-               label="CobotGraph">
+               label="Graph">
             <command
                   commandId="org.eclipse.ui.views.showView"
                   style="push">
@@ -72,9 +69,8 @@
             </visibleWhen>
          </menu>
          <menu
-               icon="icons/menus/action-buildconfig.gif"
                id="CobotSearch"
-               label="CobotSearch">
+               label="Search">
             <command
                   commandId="org.eclipse.search.ui.openFileSearchPage"
                   style="push">
@@ -90,9 +86,8 @@
             </visibleWhen>
          </menu>
          <menu
-               icon="icons/menus/config-category.gif"
                id="CobotWindow"
-               label="CobotWindow">
+               label="Window">
             <command
                   commandId="org.eclipse.ui.window.resetPerspective"
                   style="push">
@@ -108,9 +103,8 @@
             </visibleWhen>
          </menu>
          <menu
-               icon="icons/menus/config-category.gif"
                id="CobotHelp"
-               label="CobotHelp">
+               label="Help">
             <command
                   commandId="org.eclipse.ui.help.aboutAction"
                   style="push">
@@ -133,7 +127,7 @@
                id="com.cobotview.plugin.ui.toolbar1">
             <command
                   commandId="com.cobotview.newProject"
-                  icon="icons/toolbar/addpath_wiz.gif"
+                  icon="icons/toolbar/new_project.png"
                   style="push">
                <visibleWhen
                      checkEnabled="false">
@@ -150,7 +144,7 @@
                id="com.cobotview.plugin.ui.toolbar2">
             <command
                   commandId="com.cobotview.openFile"
-                  icon="icons/toolbar/refactor_field_wiz.png"
+                  icon="icons/toolbar/open_file.gif"
                   style="push">
                <visibleWhen
                      checkEnabled="false">
@@ -167,7 +161,7 @@
                id="com.cobotview.plugin.ui.toolbar3">
             <command
                   commandId="com.cobotview.displayFunctionGraph"
-                  icon="icons/toolbar/refactor_method_wiz.png"
+                  icon="icons/toolbar/functionFileGraph.png"
                   style="push">
                <visibleWhen
                      checkEnabled="false">
@@ -291,6 +285,7 @@
          point="org.eclipse.ui.views">
       <view
             class="com.cobotview.plugin.ui.views.FunctionView"
+            icon="icons/views/functionAddressView.png"
             id="com.cobotview.plugin.ui.functionView"
             name="FunctionView"
             restorable="true">
@@ -303,6 +298,7 @@
       </view>
       <view
             class="com.cobotview.plugin.ui.views.GraphView"
+            icon="icons/views/fileRelationGraph.gif"
             id="com.cobotview.plugin.ui.graphView"
             name="GraphView"
             restorable="true">
@@ -365,7 +361,7 @@
             class="com.cobotview.plugin.ui.wizards.CobotViewNewWizard"
             finalPerspective="com.cobotview.ui.perspective"
             hasPages="true"
-            icon="icons/wizard/project.gif"
+            icon="icons/wizards/wizard.png"
             id="com.cobotview.plugin.ui.CobotViewNewWizard"
             name="CobotView Project"
             project="true">

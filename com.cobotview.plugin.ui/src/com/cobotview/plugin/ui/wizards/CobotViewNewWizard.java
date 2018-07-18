@@ -13,7 +13,6 @@ public class CobotViewNewWizard extends Wizard implements INewWizard {
 	private IProject newProject;
 
 	public CobotViewNewWizard() {
-		
 	}
 
 	@Override
