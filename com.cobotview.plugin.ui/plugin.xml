@@ -290,12 +290,6 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="org.eclipse.ui.navigator.resources.ProjectExplorer"
-            id="com.cobotview.plugin.ui.projectView"
-            name="ProjectExplorer"
-            restorable="true">
-      </view>
-      <view
             class="com.cobotview.plugin.ui.views.FunctionView"
             id="com.cobotview.plugin.ui.functionView"
             name="FunctionView"
