@@ -3,9 +3,9 @@ package com.cobotview.plugin.ui.views;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
-public class ContentView extends ViewPart {
+public class OutlineView extends ViewPart {
 
-	public ContentView() {
+	public OutlineView() {
 	}
 
 	@Override

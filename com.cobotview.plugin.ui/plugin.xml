@@ -16,46 +16,13 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="menu:org.eclipse.ui.main.menu">
+            allPopups="true"
+            locationURI="menu:org.eclipse.ui.main.menu?before=additions">
          <menu
                id="CobotFile"
                label="File">
             <command
                   commandId="org.eclipse.ui.project.openProject"
-                  style="push">
-            </command>
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeWorkbenchWindow.activePerspective">
-                  <equals
-                        value="com.cobotview.ui.perspective">
-                  </equals>
-               </with>
-            </visibleWhen>
-         </menu>
-         <menu
-               id="CobotEdit"
-               label="Edit">
-            <command
-                  commandId="org.eclipse.ui.edit.rename"
-                  style="push">
-            </command>
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeWorkbenchWindow.activePerspective">
-                  <equals
-                        value="com.cobotview.ui.perspective">
-                  </equals>
-               </with>
-            </visibleWhen>
-         </menu>
-         <menu
-               id="CobotGraph"
-               label="Graph">
-            <command
-                  commandId="org.eclipse.ui.views.showView"
                   style="push">
             </command>
             <visibleWhen
@@ -85,44 +52,10 @@
                </with>
             </visibleWhen>
          </menu>
-         <menu
-               id="CobotWindow"
-               label="Window">
-            <command
-                  commandId="org.eclipse.ui.window.resetPerspective"
-                  style="push">
-            </command>
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeWorkbenchWindow.activePerspective">
-                  <equals
-                     value="com.cobotview.ui.perspective">
-                  </equals>
-               </with>
-            </visibleWhen>
-         </menu>
-         <menu
-               id="CobotHelp"
-               label="Help">
-            <command
-                  commandId="org.eclipse.ui.help.aboutAction"
-                  style="push">
-            </command>
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeWorkbenchWindow.activePerspective">
-                  <equals
-                        value="com.cobotview.ui.perspective">
-                  </equals>
-               </with>
-            </visibleWhen>
-         </menu>
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?before=additions">
          <toolbar
                id="com.cobotview.plugin.ui.toolbar1">
             <command
@@ -160,8 +93,8 @@
          <toolbar
                id="com.cobotview.plugin.ui.toolbar3">
             <command
-                  commandId="com.cobotview.displayFunctionGraph"
-                  icon="icons/toolbar/functionFileGraph.png"
+                  commandId="com.cobotview.displayFunctionAddress"
+                  icon="icons/toolbar/functionAddressView.png"
                   style="push">
                <visibleWhen
                      checkEnabled="false">
@@ -200,29 +133,7 @@
                relationship="bottom"
                relative="com.cobotview.plugin.ui.projectView"
                showTitle="true"
-               visible="true">
-         </view>
-         <view
-               closeable="true"
-               id="com.cobotview.plugin.ui.contentView"
-               minimized="false"
-               moveable="true"
-               ratio="0.5"
-               relationship="bottom"
-               relative="com.cobotview.plugin.ui.functionView"
-               showTitle="true"
-               visible="true">
-         </view>
-         <view
-               closeable="true"
-               id="com.cobotview.plugin.ui.graphView"
-               minimized="false"
-               moveable="true"
-               ratio="0.75"
-               relationship="bottom"
-               relative="org.eclipse.ui.editorss"
-               showTitle="true"
-               visible="true">
+               visible="false">
          </view>
          <hiddenMenuItem
                id="org.eclipse.ui.run">
@@ -267,10 +178,10 @@
          </defaultHandler>
       </command>
       <command
-            id="com.cobotview.displayFunctionGraph"
-            name="displayFunctionGraph">
+            id="com.cobotview.displayFunctionAddress"
+            name="displayFunctionAddress">
          <defaultHandler
-               class="com.cobotview.plugin.ui.perspective.DisplayFunctionGraphHandler">
+               class="com.cobotview.plugin.ui.commands.DisplayFunctionAddressHandler">
          </defaultHandler>
       </command>
       <command
@@ -291,9 +202,9 @@
             restorable="true">
       </view>
       <view
-            class="com.cobotview.plugin.ui.views.ContentView"
-            id="com.cobotview.plugin.ui.contentView"
-            name="ContentView"
+            class="com.cobotview.plugin.ui.views.OutlineView"
+            id="com.cobotview.plugin.ui.outlineView"
+            name="outlineView"
             restorable="true">
       </view>
       <view
@@ -361,7 +272,7 @@
             class="com.cobotview.plugin.ui.wizards.CobotViewNewWizard"
             finalPerspective="com.cobotview.ui.perspective"
             hasPages="true"
-            icon="icons/wizards/wizard.png"
+            icon="icons/wizards/new_wizard.png"
             id="com.cobotview.plugin.ui.CobotViewNewWizard"
             name="CobotView Project"
             project="true">
