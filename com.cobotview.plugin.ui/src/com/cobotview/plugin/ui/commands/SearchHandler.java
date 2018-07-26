@@ -1,11 +1,10 @@
 package com.cobotview.plugin.ui.commands;
-
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
 
-public class DisplayFunctionGraphHandler implements IHandler {
+public class SearchHandler implements IHandler {
 
 	@Override
 	public void addHandlerListener(IHandlerListener handlerListener) {

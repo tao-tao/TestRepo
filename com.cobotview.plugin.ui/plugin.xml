@@ -5,7 +5,6 @@
          point="org.eclipse.ui.perspectives">
       <perspective
             class="com.cobotview.plugin.ui.perspective.CobotViewPerspectiveFactory"
-            icon="icons/menus/prj_obj.png"
             id="com.cobotview.ui.perspective"
             name="CobotView">
          <description>
@@ -16,10 +15,10 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="menu:org.eclipse.ui.main.menu">
+            locationURI="menu:org.eclipse.ui.main.menu?before=additions">
          <menu
                id="CobotFile"
-               label="File">
+               label="文件">
             <command
                   commandId="org.eclipse.ui.project.openProject"
                   style="push">
@@ -35,42 +34,8 @@
             </visibleWhen>
          </menu>
          <menu
-               id="CobotEdit"
-               label="Edit">
-            <command
-                  commandId="org.eclipse.ui.edit.rename"
-                  style="push">
-            </command>
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeWorkbenchWindow.activePerspective">
-                  <equals
-                        value="com.cobotview.ui.perspective">
-                  </equals>
-               </with>
-            </visibleWhen>
-         </menu>
-         <menu
-               id="CobotGraph"
-               label="Graph">
-            <command
-                  commandId="org.eclipse.ui.views.showView"
-                  style="push">
-            </command>
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeWorkbenchWindow.activePerspective">
-                  <equals
-                        value="com.cobotview.ui.perspective">
-                  </equals>
-               </with>
-            </visibleWhen>
-         </menu>
-         <menu
                id="CobotSearch"
-               label="Search">
+               label="搜索">
             <command
                   commandId="org.eclipse.search.ui.openFileSearchPage"
                   style="push">
@@ -86,25 +51,8 @@
             </visibleWhen>
          </menu>
          <menu
-               id="CobotWindow"
-               label="Window">
-            <command
-                  commandId="org.eclipse.ui.window.resetPerspective"
-                  style="push">
-            </command>
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeWorkbenchWindow.activePerspective">
-                  <equals
-                     value="com.cobotview.ui.perspective">
-                  </equals>
-               </with>
-            </visibleWhen>
-         </menu>
-         <menu
                id="CobotHelp"
-               label="Help">
+               label="帮助">
             <command
                   commandId="org.eclipse.ui.help.aboutAction"
                   style="push">
@@ -122,12 +70,13 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?before=additions">
          <toolbar
                id="com.cobotview.plugin.ui.toolbar1">
             <command
                   commandId="com.cobotview.newProject"
                   icon="icons/toolbar/new_project.png"
+                  label="新建"
                   style="push">
                <visibleWhen
                      checkEnabled="false">
@@ -145,6 +94,7 @@
             <command
                   commandId="com.cobotview.openFile"
                   icon="icons/toolbar/open_file.gif"
+                  label="打开"
                   style="push">
                <visibleWhen
                      checkEnabled="false">
@@ -160,8 +110,9 @@
          <toolbar
                id="com.cobotview.plugin.ui.toolbar3">
             <command
-                  commandId="com.cobotview.displayFunctionGraph"
-                  icon="icons/toolbar/functionFileGraph.png"
+                  commandId="com.cobotview.search"
+                  icon="icons/menus/search.png"
+                  label="搜索"
                   style="push">
                <visibleWhen
                      checkEnabled="false">
@@ -187,39 +138,6 @@
                moveable="true"
                ratio="0.25"
                relationship="left"
-               relative="org.eclipse.ui.editorss"
-               showTitle="true"
-               visible="true">
-         </view>
-         <view
-               closeable="true"
-               id="com.cobotview.plugin.ui.functionView"
-               minimized="false"
-               moveable="true"
-               ratio="0.5"
-               relationship="bottom"
-               relative="com.cobotview.plugin.ui.projectView"
-               showTitle="true"
-               visible="true">
-         </view>
-         <view
-               closeable="true"
-               id="com.cobotview.plugin.ui.contentView"
-               minimized="false"
-               moveable="true"
-               ratio="0.5"
-               relationship="bottom"
-               relative="com.cobotview.plugin.ui.functionView"
-               showTitle="true"
-               visible="true">
-         </view>
-         <view
-               closeable="true"
-               id="com.cobotview.plugin.ui.graphView"
-               minimized="false"
-               moveable="true"
-               ratio="0.75"
-               relationship="bottom"
                relative="org.eclipse.ui.editorss"
                showTitle="true"
                visible="true">
@@ -254,6 +172,9 @@
          <hiddenMenuItem
                id="window">
          </hiddenMenuItem>
+         <hiddenMenuItem
+               id="openexplorer.actions.OpenExplorer">
+         </hiddenMenuItem>
       </perspectiveExtension>
    </extension>
    <extension
@@ -261,23 +182,23 @@
       <command
             defaultHandler="com.cobotview.plugin.ui.commands.NewProjectToolBarHandler"
             id="com.cobotview.newProject"
-            name="newProject">
+            name="新建">
          <defaultHandler
                class="com.cobotview.plugin.ui.perspective.NewProjectToolBarHandler">
          </defaultHandler>
       </command>
       <command
-            id="com.cobotview.displayFunctionGraph"
-            name="displayFunctionGraph">
+            id="com.cobotview.openFile"
+            name="打开">
          <defaultHandler
-               class="com.cobotview.plugin.ui.perspective.DisplayFunctionGraphHandler">
+               class="com.cobotview.plugin.ui.commands.OpenFileHandler">
          </defaultHandler>
       </command>
       <command
-            id="com.cobotview.openFile"
-            name="openFile">
+            id="com.cobotview.search"
+            name="搜索">
          <defaultHandler
-               class="com.cobotview.plugin.ui.commands.OpenFileHandler">
+               class="com.cobotview.plugin.ui.commands.SearchHandler">
          </defaultHandler>
       </command>
    </extension>
@@ -287,7 +208,7 @@
             class="com.cobotview.plugin.ui.views.FunctionView"
             icon="icons/views/functionAddressView.png"
             id="com.cobotview.plugin.ui.functionView"
-            name="FunctionView"
+            name="函数调用图"
             restorable="true">
       </view>
       <view
@@ -301,6 +222,12 @@
             icon="icons/views/fileRelationGraph.gif"
             id="com.cobotview.plugin.ui.graphView"
             name="GraphView"
+            restorable="true">
+      </view>
+      <view
+            class="com.cobotview.plugin.ui.views.OutlineView"
+            id="com.cobotview.plugin.ui.outline"
+            name="Outline"
             restorable="true">
       </view>
    </extension>
@@ -361,7 +288,7 @@
             class="com.cobotview.plugin.ui.wizards.CobotViewNewWizard"
             finalPerspective="com.cobotview.ui.perspective"
             hasPages="true"
-            icon="icons/wizards/wizard.png"
+            icon="icons/wizards/new_project.png"
             id="com.cobotview.plugin.ui.CobotViewNewWizard"
             name="CobotView Project"
             project="true">
