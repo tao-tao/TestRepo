@@ -294,4 +294,19 @@
             project="true">
       </wizard>
    </extension>
+   <extension
+         point="org.eclipse.ui.activities">
+      <activity
+            id="com.cobotview.plugin.ui.hidden"
+            name="unwanted">
+      </activity>
+      <activityPatternBinding
+            activityId="com.cobotview.plugin.ui.hidden"
+            pattern="org.eclipse.jdt.ui.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="com.cobotview.plugin.ui.hidden"
+            pattern="org.eclipse.debug.ui.*">
+      </activityPatternBinding>
+   </extension>
 </plugin>
