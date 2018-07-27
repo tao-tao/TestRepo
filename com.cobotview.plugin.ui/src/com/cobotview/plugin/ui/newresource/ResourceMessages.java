@@ -16,6 +16,10 @@ public class ResourceMessages extends NLS {
 	public static String WizardNewProjectDefaultLocation;
 	public static String WizardNewProjectCreationPage_projectNameEmpty;
 	public static String WizardNewProjectCreationPage_projectExistsMessage;
+	public static String ProjectLocationSelectionDialog_locationLabel;
+	public static String ProjectLocationSelectionDialog_directoryLabel;
+	public static String ProjectLocationSelectionDialog_useDefaultLabel;
+	public static String ProjectLocationSelectionDialog_browseLabel;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, ResourceMessages.class);

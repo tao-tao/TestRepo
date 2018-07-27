@@ -126,6 +126,25 @@
             </command>
          </toolbar>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.main.menu">
+         <command
+               commandId="com.cobotview.plugin.ui.createProject"
+               icon="icons/menus/new_project.png"
+               label="新建二进制项目"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeWorkbenchWindow.activePerspective">
+                  <equals
+                        value="com.cobotview.ui.perspective">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
@@ -199,6 +218,13 @@
             name="搜索">
          <defaultHandler
                class="com.cobotview.plugin.ui.commands.SearchHandler">
+         </defaultHandler>
+      </command>
+      <command
+            id="com.cobotview.plugin.ui.createProject"
+            name="新建二进制项目">
+         <defaultHandler
+               class="com.cobotview.plugin.ui.commands.NewProjectHandler">
          </defaultHandler>
       </command>
    </extension>

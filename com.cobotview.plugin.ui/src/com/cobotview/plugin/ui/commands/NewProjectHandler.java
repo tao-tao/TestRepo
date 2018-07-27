@@ -10,7 +10,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 import com.cobotview.plugin.ui.wizards.CobotViewNewWizard;
 
-public class NewProjectToolBarHandler implements IHandler {
+public class NewProjectHandler implements IHandler {
 
 	@Override
 	public void addHandlerListener(IHandlerListener handlerListener) {
@@ -42,4 +42,5 @@ public class NewProjectToolBarHandler implements IHandler {
 	@Override
 	public void removeHandlerListener(IHandlerListener handlerListener) {
 	}
+
 }
