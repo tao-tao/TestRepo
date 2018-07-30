@@ -1,16 +1,15 @@
 package com.cobotview.plugin.ui.commands;
-
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
-import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.search.internal.ui.SearchDialog;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import com.cobotview.plugin.ui.wizards.CobotViewNewWizard;
-
-public class NewProjectHandler implements IHandler {
+@SuppressWarnings("restriction")
+public class SearchTextHandler implements IHandler {
 
 	@Override
 	public void addHandlerListener(IHandlerListener handlerListener) {
@@ -22,11 +21,10 @@ public class NewProjectHandler implements IHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		Shell shell = HandlerUtil.getActiveShell(event);
-		WizardDialog dialog = new WizardDialog(shell, new CobotViewNewWizard());
+		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		SearchDialog dialog= new SearchDialog(window, "org.eclipse.search.internal.ui.text.TextSearchPage");
 		dialog.open();
 //		HandlerUtil.getActiveWorkbenchWindow(event).getActivePage().resetPerspective();
-
 		return null;
 	}
 
@@ -37,7 +35,7 @@ public class NewProjectHandler implements IHandler {
 
 	@Override
 	public boolean isHandled() {
-		return true;
+		return false;
 	}
 
 	@Override

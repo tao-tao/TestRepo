@@ -1,4 +1,4 @@
-package com.cobotview.plugin.ui.wizards;
+package com.cobotview.plugin.ui.utils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,24 +18,30 @@ import org.eclipse.core.runtime.Path;
 public class AddFileFolderToProject {
 	//IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 	//IProject myWebProject;
-	public void AddFileToProject(IProject myProject,Map<String,String> itemsData) throws CoreException, FileNotFoundException {
-	String fileName;
-	String path;
-	String filePath;
-	Iterator<String> iter = itemsData.keySet().iterator();
-	if (myProject.exists() && !myProject.isOpen())
-		myProject.open(null);//Before we can manipulate a project, we must open it.
-	while (iter.hasNext()) {
-		fileName = iter.next();
-		path = itemsData.get(fileName);
-		filePath = path +"\\"+ fileName; //$NON-NLS-1$
-		System.out.print("filePath="+filePath+"\r\n"); //$NON-NLS-1$ //$NON-NLS-2$
-		IFile newFile = myProject.getFile(fileName);
-    	FileInputStream fileStream = new FileInputStream(filePath);
-    	newFile.create(fileStream, false, null);// create closes the file stream, so no worries.	
-		}		  
-	}	
-			 
+	public void AddFileToProject(IProject myProject, Map<String, String> itemsData)
+			throws CoreException, FileNotFoundException {
+		String fileName;
+		String path;
+		String filePath;
+		Iterator<String> iter = itemsData.keySet().iterator();
+		if (myProject.exists() && !myProject.isOpen())
+			myProject.open(null);// Before we can manipulate a project, we must open it.
+		myProject.setHidden(false);
+		myProject.refreshLocal(0, null);
+		while (iter.hasNext()) {
+			fileName = iter.next();
+			path = itemsData.get(fileName);
+			filePath = path + "\\" + fileName; //$NON-NLS-1$
+			System.out.print("filePath=" + filePath + "\r\n"); //$NON-NLS-1$ //$NON-NLS-2$
+			IFile newFile = myProject.getFile(fileName);
+
+			if (!newFile.exists()) {
+				FileInputStream fileStream = new FileInputStream(filePath);
+				newFile.create(fileStream, false, null);
+				newFile.refreshLocal(0, null);
+			}
+		}
+	}
 		//IFile newFile = myProject.getFile("calc.exe");
 
 		
@@ -46,34 +52,33 @@ public class AddFileFolderToProject {
     		newFile.copy(newFilePath, false, null);
     		IFile calc = myProject.getFile("calc.exe");
     	}*/
-	
-	public void AddFolderToProject(IProject myProject,String folderPath) throws CoreException, FileNotFoundException {
+
+	public void AddFolderToProject(IProject myProject, String folderPath) throws CoreException, FileNotFoundException {
 		if (myProject.exists() && !myProject.isOpen())
 			myProject.open(null);
-		//IFolder newFolderHandle = createFolderHandle(folderPath);
-		//IDEWorkbenchPlugin.getPluginWorkspace().getRoot().getFolder(folderPath);
+		// IFolder newFolderHandle = createFolderHandle(folderPath);
+		// IDEWorkbenchPlugin.getPluginWorkspace().getRoot().getFolder(folderPath);
 		String name[] = folderPath.split("\\\\"); //$NON-NLS-1$ //folderPath=D:\exe_files
-		System.out.print("\\\\");//结果为\\
-		int n = name.length-1 ;//数组最后一个内容就是你要的文件名了
+		System.out.print("\\\\");// 结果为\\
+		int n = name.length - 1;// 数组最后一个内容就是你要的文件名了
 		String folderName = name[n];
-		System.out.print("folderName="+folderName+"\r\n");
+		System.out.print("folderName=" + folderName + "\r\n");
 		IFolder newFolder = myProject.getFolder(folderName);
 		newFolder.create(false, true, null);
-		System.out.print("newFolder="+newFolder+"\r\n");//newFolder=F/vv/exe_files
+		System.out.print("newFolder=" + newFolder + "\r\n");// newFolder=F/vv/exe_files
 		IPath iFolderPath = new Path(folderPath);
 		java.io.File iFolder = iFolderPath.toFile();
 		String[] fileNames = iFolder.list();
 		int fileCount = fileNames.length;
 		String filePath = null;
-		for(int i = 0;i<fileCount;i++) {
-			filePath = folderPath +"\\"+ fileNames[i]; //$NON-NLS-1$
-			System.out.print("filePath="+filePath+"\r\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		for (int i = 0; i < fileCount; i++) {
+			filePath = folderPath + "\\" + fileNames[i]; //$NON-NLS-1$
+			System.out.print("filePath=" + filePath + "\r\n"); //$NON-NLS-1$ //$NON-NLS-2$
 			IFile newFile = newFolder.getFile(fileNames[i]);
-	    	FileInputStream fileStream = new FileInputStream(filePath);
-	    	newFile.create(fileStream, false, null);
+			FileInputStream fileStream = new FileInputStream(filePath);
+			newFile.create(fileStream, false, null);
 		}
-		
-		
+
 		//IPath containerFullPath = newFolder.getFullPath();
 		//IProgressMonitor monitor;
 		//folderPath.

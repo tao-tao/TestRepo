@@ -1,10 +1,12 @@
 package com.cobotview.plugin.ui.commands;
+
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
+import org.eclipse.ui.handlers.HandlerUtil;
 
-public class SearchHandler implements IHandler {
+public class Exist implements IHandler {
 
 	@Override
 	public void addHandlerListener(IHandlerListener handlerListener) {
@@ -16,12 +18,13 @@ public class SearchHandler implements IHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		HandlerUtil.getActiveWorkbenchWindow(event).close();
 		return null;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -32,5 +35,4 @@ public class SearchHandler implements IHandler {
 	@Override
 	public void removeHandlerListener(IHandlerListener handlerListener) {
 	}
-
 }

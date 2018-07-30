@@ -18,9 +18,12 @@
             locationURI="menu:org.eclipse.ui.main.menu?before=additions">
          <menu
                id="CobotFile"
-               label="文件">
+               label="文件"
+               mnemonic="F">
             <command
-                  commandId="org.eclipse.ui.project.openProject"
+                  commandId="com.cobotview.plugin.ui.createProject"
+                  icon="icons/menus/new_project.png"
+                  label="新建"
                   style="push">
             </command>
             <visibleWhen
@@ -32,12 +35,34 @@
                   </equals>
                </with>
             </visibleWhen>
+            <command
+                  commandId="null"
+                  label="打开C/C++"
+                  style="push">
+            </command>
+            <command
+                  commandId="com.cobotview.plugin.ui.openbinary"
+                  label="打开二进制(exe或dll)"
+                  style="push">
+            </command>
+            <command
+                  commandId="com.cobotview.plugin.ui.exist"
+                  label="退出"
+                  style="push">
+            </command>
          </menu>
          <menu
                id="CobotSearch"
-               label="搜索">
+               label="搜索"
+               mnemonic="S">
             <command
-                  commandId="org.eclipse.search.ui.openFileSearchPage"
+                  commandId="com.cobotview.plugin.ui.searchText"
+                  label="搜索文本"
+                  style="push">
+            </command>
+            <command
+                  commandId="com.cobotview.plugin.ui.searchC"
+                  label="搜索C/C++"
                   style="push">
             </command>
             <visibleWhen
@@ -52,7 +77,8 @@
          </menu>
          <menu
                id="CobotHelp"
-               label="帮助">
+               label="帮助"
+               mnemonic="H">
             <command
                   commandId="org.eclipse.ui.help.aboutAction"
                   style="push">
@@ -74,7 +100,7 @@
          <toolbar
                id="com.cobotview.plugin.ui.toolbar1">
             <command
-                  commandId="com.cobotview.newProject"
+                  commandId="com.cobotview.plugin.ui.newProject"
                   icon="icons/toolbar/new_project.png"
                   label="新建"
                   style="push">
@@ -110,7 +136,7 @@
          <toolbar
                id="com.cobotview.plugin.ui.toolbar3">
             <command
-                  commandId="com.cobotview.search"
+                  commandId="com.cobotview.plugin.ui.search"
                   icon="icons/menus/search.png"
                   label="搜索"
                   style="push">
@@ -128,7 +154,7 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.ui.main.menu">
+            locationURI="popup:common.new.menu?before=new">
          <command
                commandId="com.cobotview.plugin.ui.createProject"
                icon="icons/menus/new_project.png"
@@ -136,13 +162,28 @@
                style="push">
             <visibleWhen
                   checkEnabled="false">
-               <with
-                     variable="activeWorkbenchWindow.activePerspective">
-                  <equals
-                        value="com.cobotview.ui.perspective">
-                  </equals>
-               </with>
+               <not>
+                  <and>
+                     <instanceof
+                           value="org.eclipse.core.resources.IResource">
+                     </instanceof>
+                     <instanceof
+                           value="org.eclipse.core.resources.IProject">
+                     </instanceof>
+                     <instanceof
+                           value="org.eclipse.core.resources.IFolder">
+                     </instanceof>
+                  </and>
+               </not>
             </visibleWhen>
+         </command>
+         <command
+               commandId="com.cobotview.plugin.ui.openCASMFile"
+               style="push">
+         </command>
+         <command
+               commandId="com.cobotview.plugin.ui.openbinary"
+               style="push">
          </command>
       </menuContribution>
    </extension>
@@ -191,40 +232,56 @@
          <hiddenMenuItem
                id="window">
          </hiddenMenuItem>
-         <hiddenMenuItem
-               id="openexplorer.actions.OpenExplorer">
-         </hiddenMenuItem>
       </perspectiveExtension>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
       <command
             defaultHandler="com.cobotview.plugin.ui.commands.NewProjectToolBarHandler"
-            id="com.cobotview.newProject"
+            id="com.cobotview.plugin.ui.newProject"
             name="新建">
          <defaultHandler
                class="com.cobotview.plugin.ui.perspective.NewProjectToolBarHandler">
          </defaultHandler>
       </command>
       <command
-            id="com.cobotview.openFile"
-            name="打开">
+            id="com.cobotview.plugin.ui.openCASMFile"
+            name="打开C/C++和asm">
          <defaultHandler
-               class="com.cobotview.plugin.ui.commands.OpenFileHandler">
+               class="com.cobotview.plugin.ui.commands.OpenCASMFileHandler">
          </defaultHandler>
       </command>
       <command
-            id="com.cobotview.search"
-            name="搜索">
+            id="com.cobotview.plugin.ui.openbinary"
+            name="打开二进制(exe或dll)">
          <defaultHandler
-               class="com.cobotview.plugin.ui.commands.SearchHandler">
+               class="com.cobotview.plugin.ui.OpenBinaryHandler">
          </defaultHandler>
+      </command>
+      <command
+            id="com.cobotview.plugin.ui.searchText"
+            name="搜索文本">
+         <defaultHandler
+               class="com.cobotview.plugin.ui.commands.SearchTextHandler">
+         </defaultHandler>
+      </command>
+      <command
+            defaultHandler="com.cobotview.plugin.ui.commands.SearchCHandler"
+            id="com.cobotview.plugin.ui.searchC"
+            name="搜索C/C++">
       </command>
       <command
             id="com.cobotview.plugin.ui.createProject"
             name="新建二进制项目">
          <defaultHandler
                class="com.cobotview.plugin.ui.commands.NewProjectHandler">
+         </defaultHandler>
+      </command>
+      <command
+            id="com.cobotview.plugin.ui.exist"
+            name="退出">
+         <defaultHandler
+               class="com.cobotview.plugin.ui.commands.Exist">
          </defaultHandler>
       </command>
    </extension>
@@ -299,6 +356,18 @@
          </hiddenToolBarItem>
          <hiddenToolBarItem
                id="org.eclipse.ui.help.quickStartAction">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="openexplorer.actions.OpenExplorer">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id=" org.springsource.ide.eclipse.commons.launch.relaunch.action">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="org.springsource.ide.eclipse.commons.launch.stop.action">
+         </hiddenToolBarItem>
+         <hiddenToolBarItem
+               id="org.springframework.ide.eclipse.beans.ui.commands.openBean">
          </hiddenToolBarItem>
       </perspectiveExtension>
    </extension>
