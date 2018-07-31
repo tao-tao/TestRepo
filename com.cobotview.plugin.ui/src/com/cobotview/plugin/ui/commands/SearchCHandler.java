@@ -7,7 +7,6 @@ import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.search.internal.ui.SearchDialog;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.handlers.HandlerUtil;
 
 public class SearchCHandler implements IHandler {
 

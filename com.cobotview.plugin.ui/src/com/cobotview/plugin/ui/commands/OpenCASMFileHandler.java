@@ -20,6 +20,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.navigator.resources.ProjectExplorer;
 
+import com.cobotview.plugin.ui.navigator.CobotViewNavigator;
 import com.cobotview.plugin.ui.utils.AddFileFolderToProject;
 import com.cobotview.plugin.ui.wizards.CobotViewNewWizard;
 
@@ -76,8 +77,8 @@ public class OpenCASMFileHandler implements IHandler {
 
 				IWorkbenchPart part = HandlerUtil.getActivePart(event);
 
-				ProjectExplorer projectExplorer = (ProjectExplorer) part;
-				view = projectExplorer.getCommonViewer();
+				CobotViewNavigator explorer = (CobotViewNavigator) part;
+				view = explorer.getCommonViewer();
 
 				if (view.isExpandable(project)) {
 					view.setExpandedState(project, !view.getExpandedState(project));

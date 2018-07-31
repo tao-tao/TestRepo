@@ -44,8 +44,6 @@ public class AddFileFolderToProject {
 	}
 		//IFile newFile = myProject.getFile("calc.exe");
 
-		
-	
 /*		IFile newFile = myProject.getFile("calc.exe");
     	if (newFile.exists()) {
     		IPath newFilePath = new Path("E:\\Eclipse插件开发\\二进制检测\\calc.exe");

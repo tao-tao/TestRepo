@@ -313,6 +313,13 @@
             name="Outline"
             restorable="true">
       </view>
+      <view
+            allowMultiple="false"
+            class="com.cobotview.plugin.ui.navigator.CobotViewNavigator"
+            id="com.cobotview.plugin.ui.cobotviewNavigator"
+            name="项目资源管理器"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
@@ -403,5 +410,35 @@
             activityId="com.cobotview.plugin.ui.hidden"
             pattern="org.eclipse.debug.ui.*">
       </activityPatternBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerActionBinding
+            viewerId="com.cobotview.plugin.ui.cobotviewNavigator">
+         <includes>
+            <actionExtension
+                  pattern="org.eclipse.ui.navigator.resources.*">
+            </actionExtension>
+         </includes>
+      </viewerActionBinding>
+      <viewerContentBinding
+            viewerId="com.cobotview.plugin.ui.cobotviewNavigator">
+         <includes>
+            <contentExtension
+                  pattern="com.cobotview.plugin.ui.cobotviewNavigator">
+            </contentExtension>
+            <contentExtension
+                  pattern="com.cobotview.plugin.ui.navigator.contentFilter">
+            </contentExtension>
+         </includes>
+      </viewerContentBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <commonFilter
+            class="com.cobotview.plugin.ui.navigator.NavigatorFilter"
+            id="com.cobotview.plugin.ui.navigator.contentFilter"
+            name="NavigatorFilter">
+      </commonFilter>
    </extension>
 </plugin>

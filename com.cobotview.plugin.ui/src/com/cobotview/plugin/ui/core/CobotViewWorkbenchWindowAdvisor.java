@@ -1,7 +1,6 @@
 package com.cobotview.plugin.ui.core;
 
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
-import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 import org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor;
 import org.eclipse.ui.internal.ide.application.IDEWorkbenchWindowAdvisor;
 
