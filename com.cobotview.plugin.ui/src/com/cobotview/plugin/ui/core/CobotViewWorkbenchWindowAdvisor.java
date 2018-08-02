@@ -4,6 +4,7 @@ import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor;
 import org.eclipse.ui.internal.ide.application.IDEWorkbenchWindowAdvisor;
 
+@SuppressWarnings("restriction")
 public class CobotViewWorkbenchWindowAdvisor extends IDEWorkbenchWindowAdvisor {
 
 	private IWorkbenchWindowConfigurer configurer;

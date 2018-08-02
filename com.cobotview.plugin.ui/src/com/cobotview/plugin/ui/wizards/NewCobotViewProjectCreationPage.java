@@ -39,7 +39,7 @@ import com.cobotview.plugin.ui.dialogs.CobotViewResourceInfoUtils;
 import com.cobotview.plugin.ui.newresource.ResourceMessages;
 
 @SuppressWarnings("restriction")
-public class NewBinaryProjectCreationPage extends WizardPage {
+public class NewCobotViewProjectCreationPage extends WizardPage {
 
 	private static final int SIZING_TEXT_FIELD_WIDTH = 250;
 
@@ -65,7 +65,7 @@ public class NewBinaryProjectCreationPage extends WizardPage {
 	    setPageComplete(valid);
 	};
 
-    public NewBinaryProjectCreationPage(String pageName) {
+    public NewCobotViewProjectCreationPage(String pageName) {
 		super(pageName);
 		setPageComplete(false);
 	}
@@ -91,7 +91,6 @@ public class NewBinaryProjectCreationPage extends WizardPage {
         button.setText(BROWSE_LABEL);
 		setButtonLayoutData(button);
 
-//        createBrowseButtonGroup(composite);
         setPageComplete(validatePage());
         setErrorMessage(null);
         setMessage(null);
@@ -99,6 +98,7 @@ public class NewBinaryProjectCreationPage extends WizardPage {
         Dialog.applyDialogFont(composite);
 	}
 
+	@SuppressWarnings("unused")
 	private void createBrowseButtonGroup(Composite composite) {
 		int columns = 4;
 

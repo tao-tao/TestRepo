@@ -1,5 +1,6 @@
 package com.cobotview.plugin.ui.navigator;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
@@ -28,6 +29,25 @@ public class NavigatorFilter extends ViewerFilter implements ITreeContentProvide
 
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
+
+		if (element instanceof IFile) {
+			IFile file = (IFile) element;
+
+			if (!file.getName().endsWith(".c")) {
+				if (file.getName().endsWith(".asm") && !file.getName().endsWith(".dis.asm"))
+					return true;
+
+				if (file.getName().endsWith(".exe") || file.getName().endsWith(".out")
+						|| file.getName().endsWith(".dll"))
+					return true;
+
+				if(file.getFileExtension() == null)
+					return true;
+
+				return false;
+			}
+		}
+
 		return true;
 	}
 }

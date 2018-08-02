@@ -61,7 +61,7 @@ public class CobotViewNewWizard extends BasicNewResourceWizard implements INewWi
 	private static final String FINAL_PERSPECTIVE = "com.cobotview.ui.perspective";
 	private static final String PREFERRED_PERSPECTIVES = "com.cobotview.ui.perspective";
 	private static String WINDOW_PROBLEMS_TITLE = ResourceMessages.NewProject_errorOpeningWindow;
-	private NewBinaryProjectCreationPage creationPage;
+	private NewCobotViewProjectCreationPage creationPage;
 	private IConfigurationElement configElement;
 
 	private IProject newProject;
@@ -79,12 +79,13 @@ public class CobotViewNewWizard extends BasicNewResourceWizard implements INewWi
 
 	public void addPages() {
 		super.addPages();
-		creationPage = new NewBinaryProjectCreationPage("Create a new project");
+		creationPage = new NewCobotViewProjectCreationPage("Create a new project");
 		creationPage.setTitle(ResourceMessages.NewProject_title);
 		creationPage.setDescription(ResourceMessages.NewProject_description);
 		this.addPage(creationPage);
 	}
 
+	@SuppressWarnings("deprecation")
 	private IProject createNewProject() {
 		if (newProject != null) {
 			return newProject;
@@ -106,10 +107,6 @@ public class CobotViewNewWizard extends BasicNewResourceWizard implements INewWi
 CreateProjectOperation op1 = new CreateProjectOperation(
 			description, ResourceMessages.NewProject_windowTitle);
 try {
-		// see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=219901
-		// directly execute the operation so that the undo state is
-		// not preserved.  Making this undoable resulted in too many
-		// accidental file deletions.
 		op1.execute(monitor, WorkspaceUndoUtil
 			.getUIInfoAdapter(getShell()));
 } catch (ExecutionException e) {
@@ -190,13 +187,10 @@ try {
 	}
 
 	public static void updatePerspective(IConfigurationElement configElement) {
-		// Do not change perspective if the configuration element is
-		// not specified.
 		if (configElement == null) {
 			return;
 		}
 
-		// Retrieve the new project open perspective preference setting
 		String perspSetting = PrefUtil.getAPIPreferenceStore().getString(
 				IDE.Preferences.PROJECT_OPEN_NEW_PERSPECTIVE);
 

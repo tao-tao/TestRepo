@@ -34,7 +34,7 @@ public class SearchCHandler implements IHandler {
 
 	@Override
 	public boolean isHandled() {
-		return false;
+		return true;
 	}
 
 	@Override

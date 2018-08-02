@@ -3,9 +3,9 @@ package com.cobotview.plugin.ui.views;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
-public class FunctionView extends ViewPart {
+public class FunctionAddressView extends ViewPart {
 
-	public FunctionView() {
+	public FunctionAddressView() {
 	}
 
 	@Override
