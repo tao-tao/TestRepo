@@ -201,7 +201,7 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="popup:common.new.menu?before=new">
+            locationURI="popup:com.cobotview.plugin.ui.cobotviewNavigator?after=additions">
          <command
                commandId="com.cobotview.plugin.ui.createProject"
                icon="icons/menus/new_project.png"
@@ -210,17 +210,11 @@
             <visibleWhen
                   checkEnabled="false">
                <not>
-                  <and>
+         false         <or>
                      <instanceof
                            value="org.eclipse.core.resources.IResource">
                      </instanceof>
-                     <instanceof
-                           value="org.eclipse.core.resources.IProject">
-                     </instanceof>
-                     <instanceof
-                           value="org.eclipse.core.resources.IFolder">
-                     </instanceof>
-                  </and>
+                  </or>
                </not>
             </visibleWhen>
          </command>
@@ -359,11 +353,11 @@
       </viewerContentBinding>
       <viewerActionBinding
             viewerId="com.cobotview.plugin.ui.cobotviewNavigator">
-         <includes>
+         <excludes>
             <actionExtension
-                  pattern="org.eclipse.ui.navigator.resources.*">
+                  pattern="org.springframework.ide.eclipse.ui.tools">
             </actionExtension>
-         </includes>
+         </excludes>
       </viewerActionBinding>
    </extension>
    <extension
@@ -446,5 +440,11 @@
             activityId="com.cobotview.plugin.ui.hidden"
             pattern="org.eclipse.debug.ui.*">
       </activityPatternBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="com.cobotview.plugin.ui.core.CobotViewStartUp">
+      </startup>
    </extension>
 </plugin>

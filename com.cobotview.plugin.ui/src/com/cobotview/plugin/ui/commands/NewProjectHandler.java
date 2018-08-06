@@ -23,9 +23,9 @@ public class NewProjectHandler implements IHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Shell shell = HandlerUtil.getActiveShell(event);
+
 		WizardDialog dialog = new WizardDialog(shell, new CobotViewNewWizard());
 		dialog.open();
-//		HandlerUtil.getActiveWorkbenchWindow(event).getActivePage().resetPerspective();
 
 		return null;
 	}

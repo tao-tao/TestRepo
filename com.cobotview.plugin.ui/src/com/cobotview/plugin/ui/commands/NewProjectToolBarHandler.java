@@ -25,7 +25,6 @@ public class NewProjectToolBarHandler implements IHandler {
 		Shell shell = HandlerUtil.getActiveShell(event);
 		WizardDialog dialog = new WizardDialog(shell, new CobotViewNewWizard());
 		dialog.open();
-//		HandlerUtil.getActiveWorkbenchWindow(event).getActivePage().resetPerspective();
 
 		return null;
 	}

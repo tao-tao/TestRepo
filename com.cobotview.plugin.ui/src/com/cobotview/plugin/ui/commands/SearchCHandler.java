@@ -8,6 +8,7 @@ import org.eclipse.search.internal.ui.SearchDialog;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
+@SuppressWarnings("restriction")
 public class SearchCHandler implements IHandler {
 
 	@Override
@@ -23,7 +24,6 @@ public class SearchCHandler implements IHandler {
 		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		SearchDialog dialog= new SearchDialog(window, "org.eclipse.cdt.ui.pdomSearchPage");
 		dialog.open();
-//		HandlerUtil.getActiveWorkbenchWindow(event).getActivePage().resetPerspective();
 		return null;
 	}
 

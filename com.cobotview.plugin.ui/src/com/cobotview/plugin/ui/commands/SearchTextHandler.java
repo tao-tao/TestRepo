@@ -6,7 +6,6 @@ import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.search.internal.ui.SearchDialog;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.handlers.HandlerUtil;
 
 @SuppressWarnings("restriction")
 public class SearchTextHandler implements IHandler {
@@ -24,7 +23,6 @@ public class SearchTextHandler implements IHandler {
 		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		SearchDialog dialog= new SearchDialog(window, "org.eclipse.search.internal.ui.text.TextSearchPage");
 		dialog.open();
-//		HandlerUtil.getActiveWorkbenchWindow(event).getActivePage().resetPerspective();
 		return null;
 	}
 
