@@ -30,5 +30,4 @@ public class CobotViewStartUp implements IStartup {
 			}
 		});
 	}
-
 }

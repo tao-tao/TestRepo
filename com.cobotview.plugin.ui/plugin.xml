@@ -83,13 +83,13 @@
                </with>
             </visibleWhen>
             <command
-                  commandId="null"
-                  label="打开C/C++"
+                  commandId="com.cobotview.plugin.ui.openbinary"
+                  label="打开二进制(exe或dll)"
                   style="push">
             </command>
             <command
-                  commandId="com.cobotview.plugin.ui.openbinary"
-                  label="打开二进制(exe或dll)"
+                  commandId="com.cobotview.openFile"
+                  label="打开C/C++"
                   style="push">
             </command>
             <command
@@ -103,13 +103,13 @@
                label="搜索"
                mnemonic="S">
             <command
-                  commandId="com.cobotview.plugin.ui.searchText"
-                  label="搜索文本"
+                  commandId="com.cobotview.plugin.ui.searchC"
+                  label="搜索C/C++"
                   style="push">
             </command>
             <command
-                  commandId="com.cobotview.plugin.ui.searchC"
-                  label="搜索C/C++"
+                  commandId="com.cobotview.plugin.ui.searchText"
+                  label="搜索文本"
                   style="push">
             </command>
             <visibleWhen
@@ -145,7 +145,7 @@
             allPopups="false"
             locationURI="toolbar:org.eclipse.ui.main.toolbar?before=additions">
          <toolbar
-               id="com.cobotview.plugin.ui.toolbar1">
+               id="com.cobotview.plugin.ui.toolbar">
             <command
                   commandId="com.cobotview.plugin.ui.newProject"
                   icon="icons/toolbar/new_project.png"
@@ -161,41 +161,19 @@
                   </with>
                </visibleWhen>
             </command>
-         </toolbar>
-         <toolbar
-               id="com.cobotview.plugin.ui.toolbar2">
             <command
-                  commandId="com.cobotview.openFile"
+                  commandId="com.cobotview.plugin.ui.openbinary"
                   icon="icons/toolbar/open_file.gif"
+                  id="com.cobotview.plugin.ui.open"
                   label="打开"
-                  style="push">
-               <visibleWhen
-                     checkEnabled="false">
-                  <with
-                        variable="activeWorkbenchWindow.activePerspective">
-                     <equals
-                           value="com.cobotview.ui.perspective">
-                     </equals>
-                  </with>
-               </visibleWhen>
+                  style="pulldown">
             </command>
-         </toolbar>
-         <toolbar
-               id="com.cobotview.plugin.ui.toolbar3">
             <command
-                  commandId="com.cobotview.plugin.ui.search"
-                  icon="icons/menus/search.png"
+                  commandId="com.cobotview.plugin.ui.searchC"
+                  icon="icons/toolbar/search.png"
+                  id="com.cobotview.plugin.ui.search"
                   label="搜索"
-                  style="push">
-               <visibleWhen
-                     checkEnabled="false">
-                  <with
-                        variable="activeWorkbenchWindow.activePerspective">
-                     <equals
-                           value="com.cobotview.ui.perspective">
-                     </equals>
-                  </with>
-               </visibleWhen>
+                  style="pulldown">
             </command>
          </toolbar>
       </menuContribution>
@@ -210,7 +188,7 @@
             <visibleWhen
                   checkEnabled="false">
                <not>
-         false         <or>
+                  <or>
                      <instanceof
                            value="org.eclipse.core.resources.IResource">
                      </instanceof>
@@ -219,11 +197,39 @@
             </visibleWhen>
          </command>
          <command
+               commandId="com.cobotview.plugin.ui.openbinary"
+               style="push">
+         </command>
+         <command
+               commandId="com.cobotview.plugin.ui.openCASMFile"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:com.cobotview.plugin.ui.open?after=additions">
+         <command
+               commandId="com.cobotview.plugin.ui.openbinary"
+               style="push">
+         </command>
+         <command
                commandId="com.cobotview.plugin.ui.openCASMFile"
                style="push">
          </command>
          <command
-               commandId="com.cobotview.plugin.ui.openbinary"
+               commandId="com.cobotview.openFile"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:com.cobotview.plugin.ui.search?after=additions">
+         <command
+               commandId="com.cobotview.plugin.ui.searchC"
+               style="push">
+         </command>
+         <command
+               commandId="com.cobotview.plugin.ui.searchText"
                style="push">
          </command>
       </menuContribution>
@@ -239,6 +245,13 @@
          </defaultHandler>
       </command>
       <command
+            id="com.cobotview.openFile"
+            name="打开文件">
+         <defaultHandler
+               class="com.cobotview.plugin.ui.commands.OpenFileHandler">
+         </defaultHandler>
+      </command>
+      <command
             id="com.cobotview.plugin.ui.openCASMFile"
             name="打开C/C++和asm">
          <defaultHandler
@@ -249,15 +262,13 @@
             id="com.cobotview.plugin.ui.openbinary"
             name="打开二进制(exe或dll)">
          <defaultHandler
-               class="com.cobotview.plugin.ui.OpenBinaryHandler">
+               class="com.cobotview.plugin.ui.commands.OpenBinaryHandler">
          </defaultHandler>
       </command>
       <command
+            defaultHandler="com.cobotview.plugin.ui.commands.SearchTextHandler"
             id="com.cobotview.plugin.ui.searchText"
             name="搜索文本">
-         <defaultHandler
-               class="com.cobotview.plugin.ui.commands.SearchTextHandler">
-         </defaultHandler>
       </command>
       <command
             defaultHandler="com.cobotview.plugin.ui.commands.SearchCHandler"

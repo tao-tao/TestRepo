@@ -24,7 +24,7 @@ import com.cobotview.plugin.ui.navigator.CobotViewNavigator;
 import com.cobotview.plugin.ui.utils.AddFileFolderToProject;
 import com.cobotview.plugin.ui.wizards.CobotViewNewWizard;
 
-public class OpenBinaryHandler implements IHandler {
+public class OpenFileHandler implements IHandler {
 
 	@Override
 	public void addHandlerListener(IHandlerListener handlerListener) {
@@ -38,8 +38,8 @@ public class OpenBinaryHandler implements IHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Shell shell = HandlerUtil.getActiveShell(event);
 		FileDialog dialog = new FileDialog(shell, SWT.OPEN | SWT.MULTI);
-		dialog.setText("打开exe或者dll文件");
-		dialog.setFilterExtensions(new String[] { "*.exe;*.dll", "*" });
+		dialog.setText("打开文件");
+		dialog.setFilterExtensions(new String[] {"*.*"});
 		String result = dialog.open();
 
 		if (result == null)
