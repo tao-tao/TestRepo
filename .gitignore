@@ -1,0 +1,4 @@
+*.class
+/com.cobotview.plugin.ui/.settings/
+/com.cobotview.plugin.ui/.project
+/com.cobotview.plugin.ui/bin
