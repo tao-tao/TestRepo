@@ -8,13 +8,14 @@ import java.util.Map;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 
 
-public class AddFileFolderToProject {
-	public void AddFileToProject(IProject myProject, Map<String, String> itemsData)
+public class CobotViewUtils {
+	public void addFileToProject(IProject myProject, Map<String, String> itemsData)
 			throws CoreException, FileNotFoundException {
 		String fileName;
 		String path;
@@ -29,17 +30,51 @@ public class AddFileFolderToProject {
 			path = itemsData.get(fileName);
 			filePath = path + "\\" + fileName;
 			System.out.print("filePath=" + filePath + "\r\n");
-			IFile newFile = myProject.getFile(fileName);
 
-			if (!newFile.exists()) {
-				FileInputStream fileStream = new FileInputStream(filePath);
-				newFile.create(fileStream, false, null);
-				newFile.refreshLocal(0, null);
+			if(fileName.endsWith(".exe") || fileName.endsWith(".dll") || !fileName.contains("."))
+			{
+				int index = fileName.lastIndexOf('.');
+
+				String folderName = null;
+
+				if(index == -1)
+				{
+					folderName = fileName;
+				}
+
+				folderName = fileName.subSequence(0, index).toString();
+
+				IFolder folder = myProject.getFolder(folderName);
+
+				if (!folder.exists()) {
+					folder.create(IResource.NONE, true, null);
+
+					IFile newFile = folder.getFile(fileName);
+
+					if (!newFile.exists()) {
+						IPath path1 = newFile.getFullPath();
+						newFile.copy(path1, false, null);
+						newFile.refreshLocal(0, null);
+					}
+
+					folder.setHidden(true);
+				}
+			}else
+			{
+				IFile newFile = myProject.getFile(fileName);
+
+				if (!newFile.exists()) {
+					FileInputStream fileStream = new FileInputStream(filePath);
+					newFile.create(fileStream, false, null);
+					newFile.refreshLocal(0, null);
+				}
 			}
+
+
 		}
 	}
 
-	public void AddFolderToProject(IProject myProject, String folderPath) throws CoreException, FileNotFoundException {
+	public void addFolderToProject(IProject myProject, String folderPath) throws CoreException, FileNotFoundException {
 		if (myProject.exists() && !myProject.isOpen())
 			myProject.open(null);
 		String name[] = folderPath.split("\\\\");

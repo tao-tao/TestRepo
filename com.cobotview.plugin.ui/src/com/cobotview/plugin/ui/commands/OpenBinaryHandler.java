@@ -21,7 +21,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import com.cobotview.plugin.ui.navigator.CobotViewNavigator;
-import com.cobotview.plugin.ui.utils.AddFileFolderToProject;
+import com.cobotview.plugin.ui.utils.CobotViewUtils;
 import com.cobotview.plugin.ui.wizards.CobotViewNewWizard;
 
 public class OpenBinaryHandler implements IHandler {
@@ -100,8 +100,8 @@ public class OpenBinaryHandler implements IHandler {
 		if (!itemsData.isEmpty() && project != null)
 		{
 			try {
-				AddFileFolderToProject create = new AddFileFolderToProject();
-				create.AddFileToProject(project, itemsData);
+				CobotViewUtils create = new CobotViewUtils();
+				create.addFileToProject(project, itemsData);
 
 				IWorkbenchPart part = HandlerUtil.getActivePart(event);
 
