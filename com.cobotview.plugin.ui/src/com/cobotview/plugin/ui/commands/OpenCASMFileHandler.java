@@ -104,8 +104,7 @@ public class OpenCASMFileHandler implements IHandler
 		if (!itemsData.isEmpty() && project != null)
 		{
 			try {
-				CobotViewUtils create = new CobotViewUtils();
-				create.addFileToProject(project, itemsData);
+				CobotViewUtils.addFileToProject(project, itemsData);
 
 				IWorkbenchPart part = HandlerUtil.getActivePart(event);
 
