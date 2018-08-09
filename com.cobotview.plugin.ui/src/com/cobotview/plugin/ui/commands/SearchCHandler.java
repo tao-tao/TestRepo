@@ -8,6 +8,10 @@ import org.eclipse.search.internal.ui.SearchDialog;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
+/**
+ * @author TaoTao
+ *
+ */
 @SuppressWarnings("restriction")
 public class SearchCHandler implements IHandler {
 

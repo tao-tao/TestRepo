@@ -17,6 +17,10 @@ import org.eclipse.ui.navigator.CommonNavigator;
 
 import com.cobotview.plugin.ui.commands.ICobotViewCommandConstants;
 
+/**
+ * @author TaoTao
+ *
+ */
 @SuppressWarnings("restriction")
 public class CobotViewNavigator extends CommonNavigator {
 
@@ -61,15 +65,11 @@ public class CobotViewNavigator extends CommonNavigator {
 				{
 					Command openFileCommand = commandService.getCommand(ICobotViewCommandConstants.OPEN_EXE);
 					openFileCommand.executeWithChecks(new ExecutionEvent());
-				}
-
-				if (fileExtension.endsWith("c"))
+				}else if (fileExtension.endsWith("c"))
 				{
 					Command openCCommand = commandService.getCommand(ICobotViewCommandConstants.OPEN_C);
 					openCCommand.executeWithChecks(new ExecutionEvent());
-				}
-
-				if (fileExtension.endsWith("asm"))
+				}else if (fileExtension.endsWith("asm"))
 				{
 					Command openASMCommand = commandService.getCommand(ICobotViewCommandConstants.OPEN_ASM);
 					openASMCommand.executeWithChecks(new ExecutionEvent());

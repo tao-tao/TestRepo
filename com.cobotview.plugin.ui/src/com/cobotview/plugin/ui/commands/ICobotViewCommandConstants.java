@@ -1,5 +1,9 @@
 package com.cobotview.plugin.ui.commands;
 
+/**
+ * @author TaoTao
+ *
+ */
 public interface ICobotViewCommandConstants {
 
 	public static final String OPEN_EXE = "com.cobotview.plugin.ui.openExe";

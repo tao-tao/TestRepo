@@ -54,6 +54,10 @@ import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 
 import com.cobotview.plugin.ui.newresource.ResourceMessages;
 
+/**
+ * @author TaoTao
+ *
+ */
 @SuppressWarnings("restriction")
 public class CobotViewNewWizard extends BasicNewResourceWizard implements INewWizard, IExecutableExtension{
 

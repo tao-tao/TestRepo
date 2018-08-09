@@ -5,6 +5,10 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
+/**
+ * @author TaoTao
+ *
+ */
 public class NavigatorFilter extends ViewerFilter implements ITreeContentProvider {
 
 	@Override

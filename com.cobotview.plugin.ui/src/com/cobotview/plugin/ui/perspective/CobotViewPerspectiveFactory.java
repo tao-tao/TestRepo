@@ -7,6 +7,10 @@ import org.eclipse.ui.IPerspectiveFactory;
 import com.cobotview.plugin.ui.navigator.CobotViewNavigator;
 import com.cobotview.plugin.ui.views.FunctionAddressView;
 
+/**
+ * @author TaoTao
+ *
+ */
 public class CobotViewPerspectiveFactory implements IPerspectiveFactory {
 
 	@Override

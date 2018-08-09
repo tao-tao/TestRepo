@@ -2,6 +2,10 @@ package com.cobotview.plugin.ui.newresource;
 
 import org.eclipse.osgi.util.NLS;
 
+/**
+ * @author TaoTao
+ *
+ */
 public class ResourceMessages extends NLS {
 	private static final String BUNDLE_NAME = "com.cobotview.plugin.ui.newresource.messages";
 

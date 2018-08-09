@@ -38,6 +38,10 @@ import org.eclipse.ui.internal.ide.filesystem.FileSystemSupportRegistry;
 import com.cobotview.plugin.ui.dialogs.CobotViewResourceInfoUtils;
 import com.cobotview.plugin.ui.newresource.ResourceMessages;
 
+/**
+ * @author TaoTao
+ *
+ */
 @SuppressWarnings("restriction")
 public class NewCobotViewProjectCreationPage extends WizardPage {
 

@@ -12,7 +12,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 
-
+/**
+ * @author TaoTao
+ *
+ */
 public class CobotViewUtils {
 	public static void addFileToProject(IProject myProject, Map<String, String> itemsData)
 			throws CoreException, FileNotFoundException {
@@ -35,6 +38,39 @@ public class CobotViewUtils {
 				FileInputStream fileStream = new FileInputStream(filePath);
 				newFile.create(fileStream, false, null);
 				newFile.refreshLocal(0, null);
+
+				String fileExtension = newFile.getFileExtension();
+
+				if(fileExtension == null || fileExtension.equals("exe") || fileExtension.equals("dll"))
+				{
+					String cFileName = newFile.getName();
+					String asmFileName = newFile.getName();
+
+					if(fileExtension == null)
+					{
+						cFileName = cFileName + ".bibot.c";
+						asmFileName = asmFileName + ".asm";
+					}else if(fileExtension.equals("exe") || fileExtension.equals("dll"))
+					{
+						cFileName = cFileName.substring(0, cFileName.lastIndexOf(".")) + ".bibot.c";
+						asmFileName = asmFileName.substring(0, asmFileName.lastIndexOf(".")) + ".asm";
+					}
+
+					IFile cFile = myProject.getFile(cFileName);
+					IFile asmFile = myProject.getFile(asmFileName);
+
+					if(!cFile.exists())
+					{
+						cFile.create(new FileInputStream(path + "\\" + cFileName), false, null);
+						newFile.refreshLocal(0, null);
+					}
+
+					if(!asmFile.exists())
+					{
+						asmFile.create(new FileInputStream(path + "\\" + asmFileName), false, null);
+						asmFile.refreshLocal(0, null);
+					}
+				}
 			}
 		}
 	}

@@ -12,6 +12,10 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.ide.IDE;
 
+/**
+ * @author TaoTao
+ *
+ */
 public class OpenASMCommand implements IHandler {
 
 	@Override

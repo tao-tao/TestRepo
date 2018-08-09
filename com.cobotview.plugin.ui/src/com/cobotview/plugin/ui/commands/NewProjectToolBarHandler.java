@@ -10,6 +10,10 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 import com.cobotview.plugin.ui.wizards.CobotViewNewWizard;
 
+/**
+ * @author TaoTao
+ *
+ */
 public class NewProjectToolBarHandler implements IHandler {
 
 	@Override

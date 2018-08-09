@@ -24,6 +24,10 @@ import com.cobotview.plugin.ui.navigator.CobotViewNavigator;
 import com.cobotview.plugin.ui.utils.CobotViewUtils;
 import com.cobotview.plugin.ui.wizards.CobotViewNewWizard;
 
+/**
+ * @author TaoTao
+ *
+ */
 public class OpenFileHandler implements IHandler {
 
 	@Override

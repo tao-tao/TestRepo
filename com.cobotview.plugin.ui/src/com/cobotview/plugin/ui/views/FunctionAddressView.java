@@ -15,6 +15,10 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
+/**
+ * @author TaoTao
+ *
+ */
 public class FunctionAddressView extends ViewPart {
 
 	public static final String ID = "com.cobotview.plugin.ui.functionAddressView";

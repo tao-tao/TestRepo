@@ -6,6 +6,10 @@ import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.ui.handlers.HandlerUtil;
 
+/**
+ * @author TaoTao
+ *
+ */
 public class Exist implements IHandler {
 
 	@Override

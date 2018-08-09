@@ -5,12 +5,18 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.ui.ide.IDE;
 
+/**
+ * @author TaoTao
+ *
+ */
 public class OpenExeFileCommand implements IHandler {
 
 	@Override
@@ -31,15 +37,27 @@ public class OpenExeFileCommand implements IHandler {
 		if(element instanceof IFile)
 		{
 			IFile file = (IFile)element;
+			IProject project = file.getProject();
 			String fileExtension = file.getFileExtension();
+			String fileName = file.getName();
 
 			if(fileExtension == null || fileExtension.endsWith("exe") || fileExtension.endsWith("dll"))
 			{
-				String fileName = file.getName().substring(0, file.getName().lastIndexOf("."));
+				if(fileExtension != null)
+				{
+					fileName = file.getName().substring(0, file.getName().lastIndexOf("."));
+				}
 
 				if(fileName != null && !fileName.isEmpty())
 				{
-					
+					try {
+						IFile cFile = project.getFile(fileName + ".bibot.c");
+						IFile asmFile = project.getFile(fileName + ".asm");
+						IFile[] files = {asmFile, cFile};
+						IDE.openEditors(page, files);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}

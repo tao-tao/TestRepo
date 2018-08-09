@@ -45,12 +45,14 @@
          <hiddenMenuItem
                id="navigate">
          </hiddenMenuItem>
+         <!--
          <hiddenMenuItem
                id="refactorMenuId">
          </hiddenMenuItem>
          <hiddenMenuItem
                id="sourceMenuId">
          </hiddenMenuItem>
+         -->
          <hiddenMenuItem
                id="edit">
          </hiddenMenuItem>
@@ -110,24 +112,6 @@
             <command
                   commandId="com.cobotview.plugin.ui.searchText"
                   label="搜索文本"
-                  style="push">
-            </command>
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeWorkbenchWindow.activePerspective">
-                  <equals
-                        value="com.cobotview.ui.perspective">
-                  </equals>
-               </with>
-            </visibleWhen>
-         </menu>
-         <menu
-               id="CobotHelp"
-               label="帮助"
-               mnemonic="H">
-            <command
-                  commandId="org.eclipse.ui.help.aboutAction"
                   style="push">
             </command>
             <visibleWhen
