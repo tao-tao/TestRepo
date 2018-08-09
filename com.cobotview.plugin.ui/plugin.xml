@@ -179,22 +179,12 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="popup:com.cobotview.plugin.ui.cobotviewNavigator?after=additions">
+            locationURI="popup:com.cobotview.plugin.ui.cobotviewNavigator?before=additions">
          <command
                commandId="com.cobotview.plugin.ui.createProject"
                icon="icons/menus/new_project.png"
                label="新建二进制项目"
                style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <not>
-                  <or>
-                     <instanceof
-                           value="org.eclipse.core.resources.IResource">
-                     </instanceof>
-                  </or>
-               </not>
-            </visibleWhen>
          </command>
          <command
                commandId="com.cobotview.plugin.ui.openbinary"
@@ -288,6 +278,21 @@
          <defaultHandler
                class="com.cobotview.plugin.ui.commands.Exist">
          </defaultHandler>
+      </command>
+      <command
+            defaultHandler="com.cobotview.plugin.ui.commands.OpenExeFileCommand"
+            id="com.cobotview.plugin.ui.openExe"
+            name="打开Exe">
+      </command>
+      <command
+            defaultHandler="com.cobotview.plugin.ui.commands.OpenCCommand"
+            id="com.cobotview.plugin.ui.openC"
+            name="打开C">
+      </command>
+      <command
+            defaultHandler="com.cobotview.plugin.ui.commands.OpenASMCommand"
+            id="com.cobotview.plugin.ui.openASM"
+            name="打开ASM">
       </command>
    </extension>
       <extension

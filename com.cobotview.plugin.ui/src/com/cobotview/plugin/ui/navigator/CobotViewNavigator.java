@@ -3,6 +3,7 @@ package com.cobotview.plugin.ui.navigator;
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.common.CommandException;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -13,6 +14,8 @@ import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.internal.navigator.resources.ResourceToItemsMapper;
 import org.eclipse.ui.internal.navigator.resources.plugin.WorkbenchNavigatorPlugin;
 import org.eclipse.ui.navigator.CommonNavigator;
+
+import com.cobotview.plugin.ui.commands.ICobotViewCommandConstants;
 
 @SuppressWarnings("restriction")
 public class CobotViewNavigator extends CommonNavigator {
@@ -31,10 +34,11 @@ public class CobotViewNavigator extends CommonNavigator {
 	protected void handleDoubleClick(DoubleClickEvent anEvent) {
 		ICommandService commandService = getViewSite().getService(ICommandService.class);
 		Command openProjectCommand = commandService.getCommand(IWorkbenchCommandConstants.PROJECT_OPEN_PROJECT);
-		if (openProjectCommand != null && openProjectCommand.isHandled() && openProjectCommand.isEnabled()) {
-			IStructuredSelection selection = (IStructuredSelection) anEvent
-					.getSelection();
-			Object element = selection.getFirstElement();
+		IStructuredSelection selection = (IStructuredSelection) anEvent.getSelection();
+		Object element = selection.getFirstElement();
+
+		if (openProjectCommand != null && openProjectCommand.isHandled() && openProjectCommand.isEnabled())
+		{
 			if (element instanceof IProject && !((IProject) element).isOpen()) {
 				try {
 					openProjectCommand.executeWithChecks(new ExecutionEvent());
@@ -43,6 +47,35 @@ public class CobotViewNavigator extends CommonNavigator {
 					WorkbenchNavigatorPlugin.getDefault().getLog().log(status);
 				}
 				return;
+			}
+		}
+
+		if (element instanceof IFile)
+		{
+			try {
+				IFile file = (IFile) element;
+				String fileExtension = file.getFileExtension();
+
+				if (fileExtension == null || fileExtension.endsWith("exe") || fileExtension.endsWith("dll")
+						|| fileExtension.isEmpty())
+				{
+					Command openFileCommand = commandService.getCommand(ICobotViewCommandConstants.OPEN_EXE);
+					openFileCommand.executeWithChecks(new ExecutionEvent());
+				}
+
+				if (fileExtension.endsWith("c"))
+				{
+					Command openCCommand = commandService.getCommand(ICobotViewCommandConstants.OPEN_C);
+					openCCommand.executeWithChecks(new ExecutionEvent());
+				}
+
+				if (fileExtension.endsWith("asm"))
+				{
+					Command openASMCommand = commandService.getCommand(ICobotViewCommandConstants.OPEN_ASM);
+					openASMCommand.executeWithChecks(new ExecutionEvent());
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		super.handleDoubleClick(anEvent);
