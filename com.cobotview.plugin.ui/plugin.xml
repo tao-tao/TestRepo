@@ -59,6 +59,17 @@
          <hiddenMenuItem
                id="window">
          </hiddenMenuItem>
+         <view
+               closeable="true"
+               id="org.eclipse.ui.views.ContentOutline"
+               minimized="false"
+               moveable="true"
+               ratio="0.7"
+               relationship="right"
+               relative="org.eclipse.ui.editorss"
+               showTitle="true"
+               visible="true">
+         </view>
       </perspectiveExtension>
    </extension>
    <extension
@@ -84,6 +95,10 @@
                   </equals>
                </with>
             </visibleWhen>
+            <command
+                  commandId="com.cobotview.openFile"
+                  style="push">
+            </command>
             <command
                   commandId="com.cobotview.plugin.ui.openbinary"
                   label="打开二进制(exe或dll)"
@@ -146,7 +161,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="com.cobotview.plugin.ui.openbinary"
+                  commandId="com.cobotview.openFile"
                   icon="icons/toolbar/open_file.gif"
                   id="com.cobotview.plugin.ui.open"
                   label="打开"
@@ -158,6 +173,12 @@
                   id="com.cobotview.plugin.ui.search"
                   label="搜索"
                   style="pulldown">
+            </command>
+            <command
+                  commandId="com.cobotview.plugin.ui.resetPerspective"
+                  icon="icons/toolbar/reset.png"
+                  label="重置"
+                  style="push">
             </command>
          </toolbar>
       </menuContribution>
@@ -171,27 +192,42 @@
                style="push">
          </command>
          <command
+               commandId="com.cobotview.openFile"
+               style="push">
+         </command>
+         <command
                commandId="com.cobotview.plugin.ui.openbinary"
                style="push">
          </command>
          <command
                commandId="com.cobotview.plugin.ui.openCASMFile"
                style="push">
+         </command>
+         <command
+               commandId="org.eclipse.ui.project.closeProject"
+               label="Close"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <instanceof
+                     value="org.eclipse.core.resources.IProject">
+               </instanceof>
+            </visibleWhen>
          </command>
       </menuContribution>
       <menuContribution
             allPopups="false"
             locationURI="menu:com.cobotview.plugin.ui.open?after=additions">
          <command
+               commandId="com.cobotview.openFile"
+               style="push">
+         </command>
+         <command
                commandId="com.cobotview.plugin.ui.openbinary"
                style="push">
          </command>
          <command
                commandId="com.cobotview.plugin.ui.openCASMFile"
-               style="push">
-         </command>
-         <command
-               commandId="com.cobotview.openFile"
                style="push">
          </command>
       </menuContribution>
@@ -278,6 +314,11 @@
             id="com.cobotview.plugin.ui.openASM"
             name="打开ASM">
       </command>
+      <command
+            defaultHandler="org.eclipse.ui.internal.handlers.ResetPerspectiveHandler"
+            id="com.cobotview.plugin.ui.resetPerspective"
+            name="重置">
+      </command>
    </extension>
       <extension
          point="org.eclipse.ui.newWizards">
@@ -317,13 +358,6 @@
             icon="icons/views/fileRelationGraph.gif"
             id="com.cobotview.plugin.ui.graphView"
             name="GraphView"
-            restorable="true">
-      </view>
-      <view
-            class="com.cobotview.plugin.ui.views.OutlineView"
-            icon="icons/views/outline_co.png"
-            id="com.cobotview.plugin.ui.outline"
-            name="Outline"
             restorable="true">
       </view>
       <view
