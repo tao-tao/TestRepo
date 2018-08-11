@@ -45,13 +45,13 @@ public class OpenExeFileCommand implements IHandler {
 			{
 				if(fileExtension != null)
 				{
-					fileName = file.getName().substring(0, file.getName().lastIndexOf("."));
+					fileName = file.getName();
 				}
 
 				if(fileName != null && !fileName.isEmpty())
 				{
 					try {
-						IFile cFile = project.getFile(fileName + ".bibot.c");
+						IFile cFile = project.getFile(fileName + ".c");
 						IFile asmFile = project.getFile(fileName + ".asm");
 						IFile[] files = {asmFile, cFile};
 						IDE.openEditors(page, files);

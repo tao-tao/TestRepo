@@ -48,12 +48,12 @@ public class CobotViewUtils {
 
 					if(fileExtension == null)
 					{
-						cFileName = cFileName + ".bibot.c";
+						cFileName = cFileName + ".c";
 						asmFileName = asmFileName + ".asm";
 					}else if(fileExtension.equals("exe") || fileExtension.equals("dll"))
 					{
-						cFileName = cFileName.substring(0, cFileName.lastIndexOf(".")) + ".bibot.c";
-						asmFileName = asmFileName.substring(0, asmFileName.lastIndexOf(".")) + ".asm";
+						cFileName = cFileName + ".c";
+						asmFileName = asmFileName + ".asm";
 					}
 
 					IFile cFile = myProject.getFile(cFileName);

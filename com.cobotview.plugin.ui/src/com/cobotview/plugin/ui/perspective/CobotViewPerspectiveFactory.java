@@ -5,7 +5,6 @@ import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 
 import com.cobotview.plugin.ui.navigator.CobotViewNavigator;
-import com.cobotview.plugin.ui.views.FunctionAddressView;
 
 /**
  * @author TaoTao
@@ -19,7 +18,7 @@ public class CobotViewPerspectiveFactory implements IPerspectiveFactory {
 		IFolderLayout project= layout.createFolder(CobotViewNavigator.ID, IPageLayout.LEFT, (float)0.25, editorArea);
 		project.addView(CobotViewNavigator.ID);
 
-		IFolderLayout functionAddressView = layout.createFolder(FunctionAddressView.ID, IPageLayout.BOTTOM, (float)0.6, CobotViewNavigator.ID);
-		functionAddressView.addView(FunctionAddressView.ID);
+//		IFolderLayout functionAddressView = layout.createFolder(FunctionAddressView.ID, IPageLayout.BOTTOM, (float)0.6, CobotViewNavigator.ID);
+//		functionAddressView.addView(FunctionAddressView.ID);
 	}
 }

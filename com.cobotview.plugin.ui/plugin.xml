@@ -64,7 +64,7 @@
                id="org.eclipse.ui.views.ContentOutline"
                minimized="false"
                moveable="true"
-               ratio="0.7"
+               ratio="0.75"
                relationship="right"
                relative="org.eclipse.ui.editorss"
                showTitle="true"
